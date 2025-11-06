@@ -1,19 +1,42 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* colors */
+  --color-black-100: var(--black-100);
+  --color-black-200: var(--black-200);
+  --color-black-300: var(--black-300);
+  --color-black-400: var(--black-400);
+
+  --color-grey-100: var(--grey-100);
+  --color-grey-200: var(--grey-200);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: oklch(20.07% 0.01 234.31);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --black-100: oklch(23.07% 0.012 237.23);
+  --black-200: oklch(25.89% 0.015 235.58);
+  --black-300: oklch(29.52% 0.017 237.33);
+  --black-400: oklch(30.59% 0.016 229.59);
+
+  --grey-100: oklch(0.95 0.01 240);
+  --grey-200: oklch(0.65 0.01 240);
 }
+
+/* 141C21 */
+/* 030609 */
 
 body {
   margin: 0;

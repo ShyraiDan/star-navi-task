@@ -1,14 +1,7 @@
-import { Container } from '@/ui/container'
-import { H1 } from '@/ui/typography'
+import PeoplePage from '@/pages/PeoplePage'
 
 const App = () => {
-  return (
-    <Container>
-      <div>
-        <H1>Hello world!</H1>
-      </div>
-    </Container>
-  )
+  return <PeoplePage />
 }
 
 export default App
