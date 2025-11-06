@@ -1,10 +1,13 @@
+import { Container } from '@/ui/container'
+import { H1 } from '@/ui/typography'
+
 const App = () => {
   return (
-    <>
+    <Container>
       <div>
-        <h1 className='text-3xl font-bold underline'>Hello world!</h1>
+        <H1>Hello world!</H1>
       </div>
-    </>
+    </Container>
   )
 }
 
