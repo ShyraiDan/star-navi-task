@@ -1,6 +1,11 @@
 import { Span } from '@/ui/typography'
 import { cn } from '@/utils/cn'
 
+/**
+ * A container component that provides a consistent layout for the app.
+ * @param {React.ComponentProps<'div'>} props - The props for the container component.
+ * @returns {React.ReactNode} - The container component.
+ */
 export const Container = ({ children, className, ...props }: React.ComponentProps<'div'>) => {
   return (
     <div className={cn('p-8 xl:max-w-[1200px] xl:mx-auto', className)} {...props}>
@@ -9,6 +14,11 @@ export const Container = ({ children, className, ...props }: React.ComponentProp
   )
 }
 
+/**
+ * A loading container component that provides a consistent layout for loading states.
+ * @param {React.ComponentProps<'div'>} props - The props for the loading container component.
+ * @returns {React.ReactNode} - The loading container component.
+ */
 export const LoadingContainer = ({ className, ...props }: React.ComponentProps<'div'>) => {
   return (
     <div className={cn('w-full h-full flex', className)} {...props}>
