@@ -1,6 +1,8 @@
 import { Span } from '@/ui/typography'
 import { cn } from '@/utils/cn'
 
+// TODO: import ComponentProps type
+
 /**
  * A container component that provides a consistent layout for the app.
  * @param {React.ComponentProps<'div'>} props - The props for the container component.
