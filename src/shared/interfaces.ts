@@ -1,3 +1,6 @@
+/**
+ * Interface for the paginated response from the API
+ */
 export interface PaginatedResponse<T> {
   count: number
   next: string | null
@@ -5,13 +8,9 @@ export interface PaginatedResponse<T> {
   results: T[]
 }
 
-export interface QueryResult<T> {
-  count: number
-  next: string | null
-  previous: string | null
-  results: T[]
-}
-
+/**
+ * Interface that represents a film entity
+ */
 export interface IFilm {
   id: number
   title: string
@@ -30,6 +29,9 @@ export interface IFilm {
   url: string
 }
 
+/**
+ * Interface that represents a starship entity
+ */
 export interface IStarship {
   id: number
   name: string
@@ -52,6 +54,9 @@ export interface IStarship {
   url: string
 }
 
+/**
+ * Interface that represents a person entity
+ */
 export interface IPerson {
   id: number
   name: string
