@@ -1,7 +1,5 @@
 const BASE_URL = import.meta.env.VITE_API_URL
 
-console.log('BASE_URL', BASE_URL)
-
 interface HttpOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
   body?: unknown
@@ -9,6 +7,13 @@ interface HttpOptions {
   signal?: AbortSignal
 }
 
+/**
+ * Makes a request to the specified path on the API.
+ * @template T
+ * @param {string} path - The path to request on the API.
+ * @param {HttpOptions} [opts] - Options for the request.
+ * @returns {Promise<T>} - A promise that resolves to the JSON response from the API.
+ */
 export const swApi = async <T>(path: string, opts: HttpOptions = {}): Promise<T> => {
   const res = await fetch(`${BASE_URL}${path}`, {
     method: opts.method ?? 'GET',

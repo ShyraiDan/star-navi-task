@@ -1,9 +1,9 @@
-import { useGetPeople } from '@/api/people/peopleApi'
+import { useGetPeopleQuery } from '@/api/people/peopleApi'
 import PersonCard from '@/components/PersonCard'
 import { LoadingContainer } from '@/ui/container'
 
 export const PersonList = () => {
-  const { data: people, isLoading } = useGetPeople()
+  const { data: people, isLoading } = useGetPeopleQuery()
 
   return (
     <>
