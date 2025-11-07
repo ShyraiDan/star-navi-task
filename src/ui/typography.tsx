@@ -43,3 +43,9 @@ export const P = ({ children, className }: ComponentProps<'p'>) => {
 }
 
 P.displayName = 'P'
+
+export const Span = ({ children, className }: ComponentProps<'span'>) => {
+  return <span className={cn('font-primary', className)}>{children}</span>
+}
+
+Span.displayName = 'Span'
