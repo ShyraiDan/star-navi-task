@@ -11,6 +11,9 @@ interface PersonFeatureProps {
   value: string
 }
 
+// TODO: Add a hover effect
+// TODO: Add docs
+
 const PersonFeature = ({ title, value }: PersonFeatureProps) => {
   return (
     <div className='flex flex-col gap-1 rounded-md bg-black-300 border border-black-400 p-3'>
