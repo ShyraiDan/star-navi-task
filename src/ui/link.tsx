@@ -21,7 +21,7 @@ const navLinkVariants = cva(
 
 interface NavLinkProps extends ComponentProps<typeof Link>, VariantProps<typeof navLinkVariants> {}
 
-export const NavLink = ({ to, children, className, activeProps, inactiveProps, ...props }: NavLinkProps) => {
+const NavLink = ({ to, children, className, activeProps, inactiveProps, ...props }: NavLinkProps) => {
   const activeClass = cn(navLinkVariants({ active: true }), className)
   const inactiveClass = cn(navLinkVariants({ active: false }), className)
 
@@ -36,4 +36,4 @@ export const NavLink = ({ to, children, className, activeProps, inactiveProps, .
   )
 }
 
-export default NavLink
+export { NavLink, navLinkVariants }

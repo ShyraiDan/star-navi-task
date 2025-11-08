@@ -1,4 +1,4 @@
-import NavLink from '@/ui/link'
+import { NavLink } from '@/ui/link'
 export type NavLink = { href: string; label: string; external?: boolean }
 
 const links = [{ href: '/people/?page=1', label: 'People' }]
