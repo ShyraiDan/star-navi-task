@@ -8,7 +8,7 @@ const links = [{ href: '/people', label: 'People' }]
 const Header = () => {
   return (
     <header className='z-50 w-full border-b border-neutral-800/60 bg-neutral-950/70 backdrop-blur supports-backdrop-filter:bg-neutral-950/50 sticky top-0'>
-      <div className='flex max-w-[1200px] gap-6 items-center px-8 py-3 md:py-4'>
+      <div className='flex max-w-[1200px] mx-auto gap-6 items-center px-8 py-3 md:py-4'>
         <div className='flex items-center gap-2'>
           <NavLink
             className='font-bold'
