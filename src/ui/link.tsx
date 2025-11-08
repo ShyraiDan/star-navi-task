@@ -3,6 +3,8 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/utils/cn'
 
+import type { ComponentProps } from 'react'
+
 // TODO: Add docs
 
 const navLinkVariants = cva(
@@ -17,7 +19,7 @@ const navLinkVariants = cva(
   }
 )
 
-interface NavLinkProps extends React.ComponentProps<typeof Link>, VariantProps<typeof navLinkVariants> {}
+interface NavLinkProps extends ComponentProps<typeof Link>, VariantProps<typeof navLinkVariants> {}
 
 export const NavLink = ({ to, children, className, activeProps, inactiveProps, ...props }: NavLinkProps) => {
   const activeClass = cn(navLinkVariants({ active: true }), className)

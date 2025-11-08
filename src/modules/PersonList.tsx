@@ -1,10 +1,19 @@
+import { useSearch } from '@tanstack/react-router'
+
 import { useGetPeopleQuery } from '@/api/people/peopleApi'
+import { Pagination } from '@/components/Pagination'
 import PersonCard from '@/components/PersonCard'
 import { LoadingContainer } from '@/ui/container'
 import { H4 } from '@/ui/typography'
 
+const PAGE_SIZE = 10
+
 export const PersonList = () => {
-  const { data, isLoading, isError } = useGetPeopleQuery()
+  const { page } = useSearch({ from: '/people/' })
+
+  const { data, isLoading, isError } = useGetPeopleQuery(page)
+
+  const totalPages = data && PAGE_SIZE > 0 ? Math.max(1, Math.ceil(data.count / PAGE_SIZE)) : 1
 
   if (isError) return <H4>An error has occurred. Please try again.</H4>
   if (isLoading) return <LoadingContainer />
@@ -21,6 +30,10 @@ export const PersonList = () => {
           </li>
         ))}
       </ul>
+
+      <div className='flex items-center justify-center mt-4'>
+        <Pagination currentPage={page} totalPages={totalPages} />
+      </div>
     </section>
   )
 }

@@ -14,14 +14,15 @@ type GetPeopleQueryResult = Pick<
 
 /**
  * Hook that represents a get query to fetch all people from the API
+ * @param page - Number of page
  * @returns {GetPeopleQueryResult} Returns {data, isLoading, isFetching, isError, error} fields from useQuery hook
  * @example
  * const { data, isLoading } = useGetPeopleQuery();
  */
-export const useGetPeopleQuery = (): GetPeopleQueryResult => {
+export const useGetPeopleQuery = (page: number): GetPeopleQueryResult => {
   const { data, isLoading, isFetching, isError, error } = useQuery({
-    queryKey: ['people'],
-    queryFn: ({ signal }) => swApi<PaginatedResponse<IPerson>>('/people', { signal })
+    queryKey: ['people-list', page],
+    queryFn: ({ signal }) => swApi<PaginatedResponse<IPerson>>(`/people/?page=${page}`, { signal })
   })
 
   return { data, isLoading, isFetching, isError, error }
@@ -44,7 +45,7 @@ type GetSinglePersonResult = Pick<
  */
 export const useGetSinglePersonQuery = (personId: string): GetSinglePersonResult => {
   const { data, isLoading, isFetching, isError, error } = useQuery({
-    queryKey: ['people', [...personId].sort()],
+    queryKey: ['people', 'detail', personId],
     queryFn: personId ? ({ signal }) => swApi<IPerson>(`/people/${personId}`, { signal }) : skipToken,
     enabled: !!personId
   })
