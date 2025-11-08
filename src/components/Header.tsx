@@ -1,7 +1,7 @@
 import NavLink from '@/ui/link'
 export type NavLink = { href: string; label: string; external?: boolean }
 
-const links = [{ href: '/people', label: 'People' }]
+const links = [{ href: '/people/?page=1', label: 'People' }]
 
 // TODO: Add docs
 
