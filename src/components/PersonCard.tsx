@@ -1,3 +1,5 @@
+import { personFeatures } from '@/shared/entities'
+import { NavLink } from '@/ui/link'
 import { H3, H5, H6 } from '@/ui/typography'
 
 import type { IPerson } from '@/shared/interfaces'
@@ -11,7 +13,6 @@ interface PersonFeatureProps {
   value: string
 }
 
-// TODO: Add a hover effect
 // TODO: Add docs
 
 const PersonFeature = ({ title, value }: PersonFeatureProps) => {
@@ -23,15 +24,6 @@ const PersonFeature = ({ title, value }: PersonFeatureProps) => {
   )
 }
 
-const additionalFeatures: Array<{ label: string; key: keyof IPerson }> = [
-  { label: 'Height', key: 'height' },
-  { label: 'Mass', key: 'mass' },
-  { label: 'Skin color', key: 'skin_color' },
-  { label: 'Eye color', key: 'eye_color' },
-  { label: 'Birth year', key: 'birth_year' },
-  { label: 'Gender', key: 'gender' }
-]
-
 const PersonCard = ({ person }: PeopleCardProps) => {
   return (
     <div className='border border-black-300 flex flex-col gap-6 rounded-xl bg-black-200'>
@@ -39,10 +31,11 @@ const PersonCard = ({ person }: PeopleCardProps) => {
       <div className='px-6 pb-6 flex flex-col gap-2'>
         <H3 className='text-xl text-grey-100'>{person.name}</H3>
         <div className='grid grid-cols-2 gap-4'>
-          {additionalFeatures.map(({ label, key }) => (
+          {personFeatures.map(({ label, key }) => (
             <PersonFeature key={String(key)} title={label} value={person[key] as string} />
           ))}
         </div>
+        <NavLink to={`/people/${person.id}`}>View Details</NavLink>
       </div>
     </div>
   )
