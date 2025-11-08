@@ -1,24 +1,12 @@
-import {
-  Background,
-  Controls,
-  ReactFlow,
-  addEdge,
-  applyEdgeChanges,
-  applyNodeChanges,
-  type Connection,
-  type Edge,
-  type EdgeChange,
-  type Node,
-  type NodeChange
-} from '@xyflow/react'
-import { useCallback, useEffect, useState } from 'react'
+import { Background, Controls, ReactFlow } from '@xyflow/react'
 
 import { useGetMultipleFilmsByIdsQuery } from '@/api/films/filmsApi'
 import { useGetMultipleStarshipsByIdsQuery } from '@/api/starships/starshipsApi'
+import usePersonGraph from '@/hooks/usePersonGraph'
 import { LoadingContainer } from '@/ui/container'
 import { H4 } from '@/ui/typography'
 
-import type { IFilm, IPerson, IStarship } from '@/shared/interfaces'
+import type { IPerson } from '@/shared/interfaces'
 
 import '@xyflow/react/dist/style.css'
 
@@ -26,127 +14,54 @@ interface PersonGraphProps {
   person: IPerson
 }
 
-const initialNodes: Node[] = []
-const initialEdges: Edge[] = []
+/**
+ * Here used a React Flow library and build a graph with nodes and edges according to the DOC:
+ * https://reactflow.dev/learn/concepts/building-a-flow
+ */
 
+/**
+ * A component that renders a graph of a person's related films and starships.
+ * The graph is rendered using the React Flow library and consists of nodes and edges.
+ * The nodes represent the person, films, and starships, and the edges represent the relationships between them.
+ * The graph is updated dynamically based on the data fetched from the API.
+ *
+ * @param person - The person object to display in the graph
+ * @returns {JSX.Element} - The rendered PersonGraph component
+ */
 const PersonGraph = ({ person }: PersonGraphProps) => {
+  /**
+   * Fetch starships data from the API
+   */
   const {
     data: starshipsData,
     isLoading: isStarshipLoading,
     isError: isStarshipError
   } = useGetMultipleStarshipsByIdsQuery(person?.starships ? person?.starships : [])
 
+  /**
+   * Fetch films data from the API
+   */
   const {
     data: filmsData,
     isLoading: isFilmsLoading,
     isError: isFilmsError
   } = useGetMultipleFilmsByIdsQuery(person?.films ? person?.films : [])
 
-  const [nodes, setNodes] = useState(initialNodes)
-  const [edges, setEdges] = useState(initialEdges)
-
-  const onNodesChange = useCallback(
-    (changes: NodeChange<Node>[]) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    []
-  )
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange<Edge>[]) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    []
-  )
-  const onConnect = useCallback((params: Connection) => setEdges((eds) => addEdge(params, eds)), [])
-
   const isError = isStarshipError || isFilmsError
   const isLoading = isStarshipLoading || isFilmsLoading
 
-  useEffect(() => {
-    if (!person) {
-      return
-    }
-
-    setNodes([
-      {
-        id: `${person?.id}`,
-        data: { label: person?.name },
-        position: { x: (window.screen.width - 150) / 2, y: 0 },
-        style: { fontSize: '20px', fontWeight: '600', color: 'black' }
-      }
-    ])
-  }, [person])
-
-  useEffect(() => {
-    if (!filmsData) {
-      return
-    }
-
-    const films = filmsData?.results
-
-    const filmNodes = films?.map((film: { id: number; title: string }, idx: number) => ({
-      id: `${film.id}`,
-      data: { label: film.title },
-      position: {
-        x: Math.random() + idx * 200,
-        y: Math.random() + 200
-      },
-      style: { fontSize: '20px', fontWeight: '600', color: 'black' }
-    })) as Node[]
-
-    const filmEdges = films?.map((film: IFilm) => ({
-      id: `${person.id}-${film.id}`,
-      source: person.id.toString(),
-      target: `${film.id}`,
-      label: 'film',
-      type: 'straight'
-    })) as Edge[]
-
-    setNodes((nodes) => [...nodes, ...filmNodes])
-    setEdges((edges) => [...edges, ...filmEdges])
-  }, [filmsData, person.id])
-
-  useEffect(() => {
-    if (!starshipsData) {
-      return
-    }
-
-    const starships = starshipsData?.results
-
-    const shipNodes = starships?.map((ship: IStarship, idx: number) => ({
-      id: `${ship.id}`,
-      data: { label: ship.name },
-      position: {
-        x: Math.random() + idx * 200,
-        y: Math.random() + 400
-      },
-      style: { fontSize: '20px', fontWeight: '600', color: 'black' }
-    })) as Node[]
-
-    const shipEdges = starships
-      ?.map((ship: IStarship) => {
-        return ship.films.map((idx) => ({
-          id: `${idx}-${ship.id}`,
-          source: `${idx}`,
-          target: `${ship.id}`,
-          label: 'starship',
-          type: 'straight'
-        }))
-      })
-      .flat() as Edge[]
-
-    setNodes((nodes) => [...nodes, ...shipNodes])
-    setEdges((edges) => [...edges, ...shipEdges])
-  }, [starshipsData])
+  const { nodes, edges } = usePersonGraph({
+    personData: person,
+    filmsData: filmsData?.results,
+    starshipsData: starshipsData?.results
+  })
 
   if (isError) return <H4>An error has occurred. Please try again.</H4>
   if (isLoading) return <LoadingContainer />
 
   return (
     <div className='h-[1000px] mt-5'>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView>
+      <ReactFlow nodes={nodes} edges={edges} fitView>
         <Background />
         <Controls style={{ color: 'black' }} />
       </ReactFlow>
