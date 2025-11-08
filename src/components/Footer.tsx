@@ -25,6 +25,9 @@ const socialLinks = [
   }
 ]
 
+/**
+ * A footer component that renders a footer with navigation links and social links.
+ */
 const Footer = () => {
   return (
     <footer className='z-50 w-full border-b border-neutral-800/60 bg-neutral-950/70 backdrop-blur supports-backdrop-filter:bg-neutral-950/50 sticky top-0'>

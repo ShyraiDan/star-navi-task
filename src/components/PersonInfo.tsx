@@ -7,6 +7,10 @@ interface PersonInfoProps {
   person: IPerson
 }
 
+/**
+ * A component that renders a person's information in a card.
+ * @param {PersonInfoProps} props - The props for the person info component.
+ */
 const PersonInfo = ({ person }: PersonInfoProps) => {
   return (
     <div className='border border-black-300 flex flex-col gap-4 rounded-xl bg-black-200 sm:grid sm:grid-cols-[1fr_2fr]'>

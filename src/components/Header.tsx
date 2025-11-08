@@ -3,8 +3,9 @@ export type NavLink = { href: string; label: string; external?: boolean }
 
 const links = [{ href: '/people/?page=1', label: 'People' }]
 
-// TODO: Add docs
-
+/**
+ * A header component that renders a navigation bar with links.
+ */
 const Header = () => {
   return (
     <header className='z-50 w-full border-b border-neutral-800/60 bg-neutral-950/70 backdrop-blur supports-backdrop-filter:bg-neutral-950/50 sticky top-0'>

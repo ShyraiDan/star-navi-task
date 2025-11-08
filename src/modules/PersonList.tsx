@@ -6,8 +6,18 @@ import PersonCard from '@/components/PersonCard'
 import { LoadingContainer } from '@/ui/container'
 import { H4 } from '@/ui/typography'
 
+/**
+ * The number of items to display per page.
+ */
 const PAGE_SIZE = 10
 
+/**
+ * Component that displays a list of people.
+ *
+ * It fetches people from the API, paginating the results.
+ * The number of items to display per page is defined by the PAGE_SIZE constant.
+ * It displays a pagination component with the number of pages equal to the total number of results divided by the page size.
+ */
 export const PersonList = () => {
   const { page } = useSearch({ from: '/people/' })
 

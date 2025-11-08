@@ -6,6 +6,10 @@ import PersonGraph from '@/modules/PersonGraph'
 import { Container, LoadingContainer } from '@/ui/container'
 import { H4 } from '@/ui/typography'
 
+/**
+ * Page that displays a single person's information and graph of related films and starships.
+ * @returns {JSX.Element} - The rendered SinglePerson page.
+ */
 const SinglePersonPage = () => {
   const { id } = useParams({ from: '/people/$id' })
 

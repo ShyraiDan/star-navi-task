@@ -27,6 +27,10 @@ const socials = [
   }
 ]
 
+/**
+ * A hero page component that renders a greeting, a description, and a list of social links.
+ * @returns {JSX.Element} - The rendered Hero page.
+ */
 const HeroPage = () => {
   return (
     <Container className='flex items-center justify-center flex-col'>

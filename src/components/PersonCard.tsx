@@ -13,8 +13,10 @@ interface PersonFeatureProps {
   value: string
 }
 
-// TODO: Add docs
-
+/**
+ * A component that renders a single person feature in a card.
+ * @param {PersonFeatureProps} props - The props for the person feature component.
+ */
 const PersonFeature = ({ title, value }: PersonFeatureProps) => {
   return (
     <div className='flex flex-col gap-1 rounded-md bg-black-300 border border-black-400 p-3'>
@@ -24,6 +26,10 @@ const PersonFeature = ({ title, value }: PersonFeatureProps) => {
   )
 }
 
+/**
+ * A person card component that renders a person's information in a card.
+ * @param {PeopleCardProps} props - The props for the person card component.
+ */
 const PersonCard = ({ person }: PeopleCardProps) => {
   return (
     <div className='border border-black-300 flex flex-col gap-6 rounded-xl bg-black-200'>
