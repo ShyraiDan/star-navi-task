@@ -41,7 +41,7 @@ const HeroPage = () => {
         <span className='text-neutral-400'>Socials:</span>
 
         {socials.map(({ href, icon: Icon, ariaLabel }) => (
-          <ExternalLink key={href} href={href} aria-label={ariaLabel}>
+          <ExternalLink variant='button' key={href} href={href} aria-label={ariaLabel}>
             <Icon size={16} /> {ariaLabel}
           </ExternalLink>
         ))}

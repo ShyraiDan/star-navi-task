@@ -1,25 +1,25 @@
 import { Github, Linkedin, Send } from 'lucide-react'
 
+import { githubLink, linkedinLink, telegramLink } from '@/shared/constants'
+import ExternalLink from '@/ui/external-link'
 import NavLink from '@/ui/link'
 import { P } from '@/ui/typography'
-
-// TODO: Update telegram link
 
 const links = [{ href: '/people', label: 'People' }]
 
 const socialLinks = [
   {
-    href: 'https://www.linkedin.com/in/danylo-shyrai-92b3b6261/',
+    href: linkedinLink,
     icon: <Linkedin size={16} className='text-neutral-100' />,
     ariaLabel: 'LinkedIn'
   },
   {
-    href: 'https://github.com/ShyraiDan',
+    href: githubLink,
     icon: <Github size={16} className='text-neutral-100' />,
     ariaLabel: 'GitHub'
   },
   {
-    href: 'https://www.facebook.com/',
+    href: telegramLink,
     icon: <Send size={16} className='text-neutral-100' />,
     ariaLabel: 'Telegram'
   }
@@ -55,13 +55,9 @@ const Footer = () => {
               <ul className='flex items-center gap-3 my-4 sm:my-0 sm:ml-3'>
                 {socialLinks.map(({ href, icon, ariaLabel }) => (
                   <li key={href}>
-                    <a
-                      target='_blank'
-                      href={href}
-                      aria-label={ariaLabel}
-                      className='transition-all duration-150 ease-in-out hover:opacity-70'>
+                    <ExternalLink href={href} aria-label={ariaLabel}>
                       {icon}
-                    </a>
+                    </ExternalLink>
                   </li>
                 ))}
               </ul>
