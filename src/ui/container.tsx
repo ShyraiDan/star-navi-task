@@ -1,5 +1,5 @@
 import { Span } from '@/ui/typography'
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils/cn/cn'
 
 // TODO: import ComponentProps type
 

@@ -1,7 +1,7 @@
 import { useQuery, type UseQueryResult } from '@tanstack/react-query'
 
 import { swApi } from '@/api/api'
-import { transformIdsToCsv } from '@/utils/transformIdsToCsv'
+import { transformIdsToCsv } from '@/utils/transformIdsToCsv/transformIdsToCsv'
 
 import type { IFilm, PaginatedResponse } from '@/shared/interfaces'
 
