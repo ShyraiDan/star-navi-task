@@ -7,7 +7,7 @@ afterEach(() => cleanup())
 
 vi.mock('@/shared/entities', () => {
   return {
-    personFeatures: [
+    heroFeatures: [
       { label: 'Height', key: 'height' },
       { label: 'Mass', key: 'mass' },
       { label: 'Skin color', key: 'skin_color' },
@@ -36,12 +36,12 @@ vi.mock('@/ui/Typography/Typography', () => {
   }
 })
 
-import PersonCard from './PersonCard'
+import HeroCard from './HeroCard'
 
-import type { IPerson } from '@/shared/interfaces'
+import type { IHero } from '@/shared/interfaces'
 import type { ComponentProps } from 'react'
 
-const person = {
+const hero = {
   id: 44,
   name: 'Darth Maul',
   height: '175',
@@ -59,15 +59,15 @@ const person = {
   created: '2014-12-19T18:00:41.929000Z',
   edited: '2014-12-20T21:17:50.403000Z',
   url: 'https://sw-api.starnavi.io/people/44/'
-} as IPerson
+} as IHero
 
-describe('PersonCard', () => {
+describe('HeroCard', () => {
   beforeEach(() => {
     vi.restoreAllMocks()
   })
 
-  it('It renders all person features', () => {
-    const { container } = render(<PersonCard person={person} />)
+  it('It renders all hero features', () => {
+    const { container } = render(<HeroCard hero={hero} />)
 
     const grid = container.querySelector('.grid')
     expect(grid).toBeTruthy()
@@ -97,22 +97,22 @@ describe('PersonCard', () => {
   })
 
   it('It renders an image with the correct alt and src', () => {
-    render(<PersonCard person={person} />)
+    render(<HeroCard hero={hero} />)
     const img = screen.getByAltText(/darth maul/i) as HTMLImageElement
     expect(img).toBeInTheDocument()
 
     expect(img).toHaveAttribute('src', 'https://placehold.co/600x400')
   })
 
-  it('It shows a name of a person in title', () => {
-    render(<PersonCard person={person} />)
+  it('It shows a name of a hero in title', () => {
+    render(<HeroCard hero={hero} />)
 
     const title = screen.getByRole('heading', { level: 3, name: /darth maul/i })
     expect(title).toBeInTheDocument()
   })
 
-  it('It has a link with correct href to the person page', () => {
-    render(<PersonCard person={person} />)
+  it('It has a link with correct href to the hero page', () => {
+    render(<HeroCard hero={hero} />)
 
     const link = screen.getByRole('link', { name: /view details/i })
     expect(link).toBeInTheDocument()

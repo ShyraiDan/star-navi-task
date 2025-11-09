@@ -2,6 +2,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import SinglePersonPage from '@/pages/SinglePersonPage'
 
-export const Route = createFileRoute('/people/$id')({
+export const Route = createFileRoute('/hero/$id')({
   component: SinglePersonPage
 })

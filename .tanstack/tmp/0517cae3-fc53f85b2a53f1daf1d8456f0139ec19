@@ -6,7 +6,7 @@ interface PageParams {
   page: number
 }
 
-export const Route = createFileRoute('/people/')({
+export const Route = createFileRoute('/hero/')({
   validateSearch: (search: Record<string, unknown>): PageParams => {
     return {
       page: search.page as number

@@ -1,7 +1,7 @@
 import { NavLink } from '@/ui/Link/Link'
 export type NavLink = { href: string; label: string; external?: boolean }
 
-const links = [{ href: '/people/?page=1', label: 'People' }]
+const links = [{ href: '/hero/?page=1', label: 'Hero' }]
 
 /**
  * A header component that renders a navigation bar with links.

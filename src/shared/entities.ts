@@ -1,6 +1,6 @@
-import type { IPerson } from './interfaces'
+import type { IHero } from './interfaces'
 
-export const personFeatures: Array<{ label: string; key: keyof IPerson }> = [
+export const heroFeatures: Array<{ label: string; key: keyof IHero }> = [
   { label: 'Height', key: 'height' },
   { label: 'Mass', key: 'mass' },
   { label: 'Skin color', key: 'skin_color' },

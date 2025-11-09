@@ -41,7 +41,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
         disabled={currentPage === 1}
         aria-label='Previous page'
         className='text-sm duration-200 transition-all ease-in-out inline-flex items-center gap-1 rounded-lg border border-neutral-800 px-3 py-1.5 text-neutral-200 cursor-pointer hover:border-neutral-600 disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:hover:border-neutral-800'
-        to='/people'
+        to='/hero'
         search={{ page: currentPage - 1 }}>
         Prev
       </Link>
@@ -59,7 +59,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
               disabled={currentPage === p}
               aria-label='Previous page'
               className='text-sm duration-200 transition-all ease-in-out inline-flex items-center gap-1 rounded-lg border border-neutral-800 px-3 py-1.5 text-neutral-200 cursor-pointer hover:border-neutral-600 disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:hover:border-neutral-800'
-              to='/people'
+              to='/hero'
               search={{ page: p }}>
               {p}
             </Link>
@@ -71,7 +71,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
         disabled={currentPage === totalPages}
         aria-label='Previous page'
         className='text-sm duration-200 transition-all ease-in-out inline-flex items-center gap-1 rounded-lg border border-neutral-800 px-3 py-1.5 text-neutral-200 cursor-pointer hover:border-neutral-600 disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:hover:border-neutral-800'
-        to='/people'
+        to='/hero'
         search={{ page: currentPage + 1 }}>
         Next
       </Link>

@@ -55,9 +55,9 @@ export interface IStarship {
 }
 
 /**
- * Interface that represents a person entity
+ * Interface that represents a hero entity
  */
-export interface IPerson {
+export interface IHero {
   id: number
   name: string
   height: string

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
-import type { IFilm, IPerson, IStarship } from '@/shared/interfaces'
+import type { IFilm, IHero, IStarship } from '@/shared/interfaces'
 import type { Edge, Node } from '@xyflow/react'
 
-interface UsePersonGraphParams {
-  personData?: IPerson
+interface UseHeroGraphParams {
+  heroData?: IHero
   filmsData?: IFilm[]
   starshipsData?: IStarship[]
 }
@@ -16,37 +16,37 @@ const initialNodes: Node[] = []
 const initialEdges: Edge[] = []
 
 /**
- * A hook that sets up a graph of a person's related films and starships.
- * It takes in the person's data, films data, and starships data as props.
+ * A hook that sets up a graph of a hero's related films and starships.
+ * It takes in the hero's data, films data, and starships data as props.
  * It uses the XYFlow library to create nodes and edges for the graph.
- * The nodes represent the person, films, and starships, and the edges represent the relationships between them.
+ * The nodes represent the hero, films, and starships, and the edges represent the relationships between them.
  * The graph is updated dynamically based on the data fetched from the API.
- * @param {personData} personData - The person's data.
+ * @param {heroData} heroData - The hero's data.
  * @param {filmsData} filmsData - The films's data.
  * @param {starshipsData} starshipsData - The starships's data.
  * @returns {nodes: Node[], edges: Edge[]} - The nodes and edges for the graph.
  */
-const usePersonGraph = ({ personData, filmsData, starshipsData }: UsePersonGraphParams) => {
+const useHeroGraph = ({ heroData, filmsData, starshipsData }: UseHeroGraphParams) => {
   const [nodes, setNodes] = useState(initialNodes)
   const [edges, setEdges] = useState(initialEdges)
 
   /**
-   * This Effect creates a main node for the person
+   * This Effect creates a main node for the hero
    */
   useEffect(() => {
-    if (!personData) {
+    if (!heroData) {
       return
     }
 
     setNodes([
       {
-        id: `${personData?.id}`,
-        data: { label: personData?.name },
+        id: `${heroData?.id}`,
+        data: { label: heroData?.name },
         position: { x: (window.screen.width - 150) / 2, y: 0 },
         style: { fontSize: '20px', fontWeight: '600', color: 'black' }
       }
     ])
-  }, [personData])
+  }, [heroData])
 
   /**
    * This Effect creates a film nodes and edges
@@ -73,8 +73,8 @@ const usePersonGraph = ({ personData, filmsData, starshipsData }: UsePersonGraph
      * Here we create a edge between each film and main node.
      */
     const filmEdges = filmsData?.map((film: IFilm) => ({
-      id: `${personData?.id}-${film.id}`,
-      source: personData?.id.toString(),
+      id: `${heroData?.id}-${film.id}`,
+      source: heroData?.id.toString(),
       target: `${film.id}`,
       label: 'film',
       type: 'straight'
@@ -85,7 +85,7 @@ const usePersonGraph = ({ personData, filmsData, starshipsData }: UsePersonGraph
      */
     setNodes((nodes) => [...nodes, ...filmNodes])
     setEdges((edges) => [...edges, ...filmEdges])
-  }, [filmsData, personData?.id])
+  }, [filmsData, heroData?.id])
 
   /**
    * This Effect creates a starship nodes and edges
@@ -136,4 +136,4 @@ const usePersonGraph = ({ personData, filmsData, starshipsData }: UsePersonGraph
   }
 }
 
-export default usePersonGraph
+export default useHeroGraph

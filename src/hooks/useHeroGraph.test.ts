@@ -1,11 +1,11 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import usePersonGraph from './usePersonGraph'
+import useHeroGraph from './useHeroGraph'
 
-import type { IFilm, IPerson } from '@/shared/interfaces'
+import type { IFilm, IHero } from '@/shared/interfaces'
 
-describe('usePersonGraph', () => {
+describe('useHeroGraph', () => {
   const originalScreen = window.screen
 
   beforeEach(() => {
@@ -25,16 +25,16 @@ describe('usePersonGraph', () => {
   })
 
   it('It returns empty nodes and edges as default', () => {
-    const { result } = renderHook(() => usePersonGraph({}))
+    const { result } = renderHook(() => useHeroGraph({}))
     expect(result.current.nodes).toEqual([])
     expect(result.current.edges).toEqual([])
   })
 
-  it('It creates a main person node', async () => {
-    const person = { id: 1, name: 'Luke Skywalker' } as unknown as IPerson
+  it('It creates a main hero node', async () => {
+    const hero = { id: 1, name: 'Luke Skywalker' } as unknown as IHero
 
-    const { result } = renderHook((props) => usePersonGraph(props), {
-      initialProps: { personData: person }
+    const { result } = renderHook((props) => useHeroGraph(props), {
+      initialProps: { heroData: hero }
     })
 
     await waitFor(() => {
@@ -48,22 +48,19 @@ describe('usePersonGraph', () => {
     expect(main.position).toEqual({ x: 425, y: 0 })
   })
 
-  it('It adds a nodes with films and edges between person and films', async () => {
-    const person = { id: 1, name: 'Luke' } as unknown as IPerson
+  it('It adds a nodes with films and edges between hero and films', async () => {
+    const hero = { id: 1, name: 'Luke' } as unknown as IHero
     const films: IFilm[] = [
       { id: 10, title: 'A New Hope' } as IFilm,
       { id: 11, title: 'The Empire Strikes Back' } as IFilm
     ]
 
-    const { result, rerender } = renderHook(
-      (props: { personData: IPerson; filmsData: IFilm[] }) => usePersonGraph(props),
-      {
-        initialProps: { personData: person, filmsData: films }
-      }
-    )
+    const { result, rerender } = renderHook((props: { heroData: IHero; filmsData: IFilm[] }) => useHeroGraph(props), {
+      initialProps: { heroData: hero, filmsData: films }
+    })
 
     await act(async () => {
-      rerender({ personData: person, filmsData: films })
+      rerender({ heroData: hero, filmsData: films })
     })
 
     await waitFor(() => {
@@ -85,12 +82,12 @@ describe('usePersonGraph', () => {
   })
 
   it('It does not add any edges if there are no data', async () => {
-    const { result } = renderHook(() => usePersonGraph({}))
+    const { result } = renderHook(() => useHeroGraph({}))
     expect(result.current.nodes).toEqual([])
     expect(result.current.edges).toEqual([])
 
     const films: IFilm[] = [{ id: 10, title: 'A New Hope' } as IFilm]
-    const { result: r2 } = renderHook(() => usePersonGraph({ filmsData: films }))
+    const { result: r2 } = renderHook(() => useHeroGraph({ filmsData: films }))
     await waitFor(() => {
       expect(r2.current.nodes.length).toBe(1)
       expect(r2.current.edges.length).toBe(1)

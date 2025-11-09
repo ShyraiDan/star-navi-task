@@ -2,16 +2,16 @@ import { Background, Controls, ReactFlow } from '@xyflow/react'
 
 import { useGetMultipleFilmsByIdsQuery } from '@/api/films/filmsApi'
 import { useGetMultipleStarshipsByIdsQuery } from '@/api/starships/starshipsApi'
-import usePersonGraph from '@/hooks/usePersonGraph'
+import useheroGraph from '@/hooks/useHeroGraph'
 import { LoadingContainer } from '@/ui/LoadingContainer/LoadingContainer'
 import { H4 } from '@/ui/Typography/Typography'
 
-import type { IPerson } from '@/shared/interfaces'
+import type { IHero } from '@/shared/interfaces'
 
 import '@xyflow/react/dist/style.css'
 
-interface PersonGraphProps {
-  person: IPerson
+interface HeroGraphProps {
+  hero: IHero
 }
 
 /**
@@ -20,15 +20,15 @@ interface PersonGraphProps {
  */
 
 /**
- * A component that renders a graph of a person's related films and starships.
+ * A component that renders a graph of a hero's related films and starships.
  * The graph is rendered using the React Flow library and consists of nodes and edges.
- * The nodes represent the person, films, and starships, and the edges represent the relationships between them.
+ * The nodes represent the hero, films, and starships, and the edges represent the relationships between them.
  * The graph is updated dynamically based on the data fetched from the API.
  *
- * @param person - The person object to display in the graph
- * @returns {JSX.Element} - The rendered PersonGraph component
+ * @param hero - The hero object to display in the graph
+ * @returns {JSX.Element} - The rendered HeroGraph component
  */
-const PersonGraph = ({ person }: PersonGraphProps) => {
+const heroGraph = ({ hero }: HeroGraphProps) => {
   /**
    * Fetch starships data from the API
    */
@@ -36,7 +36,7 @@ const PersonGraph = ({ person }: PersonGraphProps) => {
     data: starshipsData,
     isLoading: isStarshipLoading,
     isError: isStarshipError
-  } = useGetMultipleStarshipsByIdsQuery(person?.starships ? person?.starships : [])
+  } = useGetMultipleStarshipsByIdsQuery(hero?.starships ? hero?.starships : [])
 
   /**
    * Fetch films data from the API
@@ -45,13 +45,13 @@ const PersonGraph = ({ person }: PersonGraphProps) => {
     data: filmsData,
     isLoading: isFilmsLoading,
     isError: isFilmsError
-  } = useGetMultipleFilmsByIdsQuery(person?.films ? person?.films : [])
+  } = useGetMultipleFilmsByIdsQuery(hero?.films ? hero?.films : [])
 
   const isError = isStarshipError || isFilmsError
   const isLoading = isStarshipLoading || isFilmsLoading
 
-  const { nodes, edges } = usePersonGraph({
-    personData: person,
+  const { nodes, edges } = useheroGraph({
+    heroData: hero,
     filmsData: filmsData?.results,
     starshipsData: starshipsData?.results
   })
@@ -69,4 +69,4 @@ const PersonGraph = ({ person }: PersonGraphProps) => {
   )
 }
 
-export default PersonGraph
+export default heroGraph
