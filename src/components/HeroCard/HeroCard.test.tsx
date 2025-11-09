@@ -20,6 +20,7 @@ vi.mock('@/shared/entities', () => {
 
 vi.mock('@/ui/Link/Link', () => {
   return {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     NavLink: ({ to, children, ...rest }: any) => (
       <a href={typeof to === 'string' ? to : String(to)} {...rest}>
         {children}

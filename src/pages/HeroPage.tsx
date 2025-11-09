@@ -1,7 +1,6 @@
+import { HeroList } from '@/modules/HeroList'
 import { Container } from '@/ui/Container/Container'
 import { H1, P } from '@/ui/Typography/Typography'
-
-import { HeroList } from '@/modules/HeroList'
 
 /**
  * A page that renders a list of heroes from the API.
