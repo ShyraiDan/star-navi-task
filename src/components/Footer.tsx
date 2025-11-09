@@ -1,9 +1,9 @@
 import { Github, Linkedin, Send } from 'lucide-react'
 
 import { githubLink, linkedinLink, telegramLink } from '@/shared/constants'
-import ExternalLink from '@/ui/external-link'
-import { NavLink } from '@/ui/link'
-import { P } from '@/ui/typography'
+import ExternalLink from '@/ui/ExternalLink/ExternalLink'
+import { NavLink } from '@/ui/Link/Link'
+import { P } from '@/ui/Typography/Typography'
 
 const links = [{ href: '/people', label: 'People' }]
 

@@ -1,5 +1,5 @@
 import { personFeatures } from '@/shared/entities'
-import { H3, H5, H6 } from '@/ui/typography'
+import { H3, H5, H6 } from '@/ui/Typography/Typography'
 
 import type { IPerson } from '@/shared/interfaces'
 

@@ -1,6 +1,6 @@
 import { personFeatures } from '@/shared/entities'
-import { NavLink } from '@/ui/link'
-import { H3, H5, H6 } from '@/ui/typography'
+import { NavLink } from '@/ui/Link/Link'
+import { H3, H5, H6 } from '@/ui/Typography/Typography'
 
 import type { IPerson } from '@/shared/interfaces'
 

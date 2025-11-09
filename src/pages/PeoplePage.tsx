@@ -1,6 +1,6 @@
 import { PersonList } from '@/modules/PersonList'
-import { Container } from '@/ui/container'
-import { H1, P } from '@/ui/typography'
+import { Container } from '@/ui/Container/Container'
+import { H1, P } from '@/ui/Typography/Typography'
 
 /**
  * A page that renders a list of people from the API.

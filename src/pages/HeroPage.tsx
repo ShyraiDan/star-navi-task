@@ -1,8 +1,8 @@
 import { Github, Linkedin, Mail, Send } from 'lucide-react'
 
-import { Container } from '@/ui/container'
-import ExternalLink from '@/ui/external-link'
-import { H1, P } from '@/ui/typography'
+import { Container } from '@/ui/Container/Container'
+import ExternalLink from '@/ui/ExternalLink/ExternalLink'
+import { H1, P } from '@/ui/Typography/Typography'
 
 const socials = [
   {

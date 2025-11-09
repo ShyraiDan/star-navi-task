@@ -3,8 +3,8 @@ import { useParams } from '@tanstack/react-router'
 import { useGetSinglePersonQuery } from '@/api/people/peopleApi'
 import PersonInfo from '@/components/PersonInfo'
 import PersonGraph from '@/modules/PersonGraph'
-import { Container, LoadingContainer } from '@/ui/container'
-import { H4 } from '@/ui/typography'
+import { Container, LoadingContainer } from '@/ui/Container/Container'
+import { H4 } from '@/ui/Typography/Typography'
 
 /**
  * Page that displays a single person's information and graph of related films and starships.
