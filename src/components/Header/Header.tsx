@@ -20,7 +20,7 @@ const Header = () => {
         </div>
         <nav className='flex items-center gap-2'>
           {links.map(({ href, label }) => (
-            <NavLink className='font-normal' to={href}>
+            <NavLink key={label} className='font-normal' to={href}>
               {label}
             </NavLink>
           ))}

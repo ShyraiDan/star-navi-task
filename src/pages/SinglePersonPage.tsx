@@ -1,9 +1,10 @@
 import { useParams } from '@tanstack/react-router'
 
 import { useGetSinglePersonQuery } from '@/api/people/peopleApi'
-import PersonInfo from '@/components/PersonInfo'
+import PersonInfo from '@/components/PersonInfo/PersonInfo'
 import PersonGraph from '@/modules/PersonGraph'
-import { Container, LoadingContainer } from '@/ui/Container/Container'
+import { Container } from '@/ui/Container/Container'
+import { LoadingContainer } from '@/ui/LoadingContainer/LoadingContainer'
 import { H4 } from '@/ui/Typography/Typography'
 
 /**

@@ -1,9 +1,9 @@
 import { useSearch } from '@tanstack/react-router'
 
 import { useGetPeopleQuery } from '@/api/people/peopleApi'
-import { Pagination } from '@/components/Pagination'
-import PersonCard from '@/components/PersonCard'
-import { LoadingContainer } from '@/ui/Container/Container'
+import { Pagination } from '@/components/Pagination/Pagination'
+import PersonCard from '@/components/PersonCard/PersonCard'
+import { LoadingContainer } from '@/ui/LoadingContainer/LoadingContainer'
 import { H4 } from '@/ui/Typography/Typography'
 
 /**

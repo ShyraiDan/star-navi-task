@@ -3,7 +3,7 @@ import { Background, Controls, ReactFlow } from '@xyflow/react'
 import { useGetMultipleFilmsByIdsQuery } from '@/api/films/filmsApi'
 import { useGetMultipleStarshipsByIdsQuery } from '@/api/starships/starshipsApi'
 import usePersonGraph from '@/hooks/usePersonGraph'
-import { LoadingContainer } from '@/ui/Container/Container'
+import { LoadingContainer } from '@/ui/LoadingContainer/LoadingContainer'
 import { H4 } from '@/ui/Typography/Typography'
 
 import type { IPerson } from '@/shared/interfaces'
