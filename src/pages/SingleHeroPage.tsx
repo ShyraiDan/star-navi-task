@@ -22,7 +22,7 @@ const SingleHeroPage = () => {
         <H4>An error has occurred. Please try again.</H4>
       </Container>
     )
-  if (isLoading) return <LoadingContainer />
+  if (isLoading) return <LoadingContainer className='p-8 min-h-[calc(100vh-60px-64px)] xl:max-w-[1200px] xl:mx-auto' />
 
   return (
     <Container>
