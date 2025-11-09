@@ -3,6 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import '@testing-library/jest-dom/vitest'
 
+const BASE_URL = import.meta.env.VITE_API_URL
+
 afterEach(() => cleanup())
 
 vi.mock('@/shared/entities', () => {
@@ -59,7 +61,7 @@ const hero = {
   starships: [41],
   created: '2014-12-19T18:00:41.929000Z',
   edited: '2014-12-20T21:17:50.403000Z',
-  url: 'https://sw-api.starnavi.io/people/44/'
+  url: `${BASE_URL}/people/44/`
 } as IHero
 
 describe('HeroCard', () => {
@@ -117,6 +119,6 @@ describe('HeroCard', () => {
 
     const link = screen.getByRole('link', { name: /view details/i })
     expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/people/44')
+    expect(link).toHaveAttribute('href', '/hero/44')
   })
 })

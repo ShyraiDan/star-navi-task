@@ -13,7 +13,7 @@ type GetHeroesQueryResult = Pick<
 >
 
 /**
- * Hook that represents a get query to fetch all people from the API
+ * Hook that represents a get query to fetch all heroes from the API
  * @param page - Number of page
  * @returns {GetHeroesQueryResult} Returns {data, isLoading, isFetching, isError, error} fields from useQuery hook
  * @example
